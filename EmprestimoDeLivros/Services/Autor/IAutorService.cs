@@ -6,6 +6,6 @@ namespace EmprestimoDeLivros.Services.Autor
     {
         Task<ResponseModel<List<AutorModel>>> ListarAutores();
         Task<ResponseModel<AutorModel>> BuscarAutorPorId( int idAutor );
-        Task<ResponseModel<AutorModel>> BuscarAutorPorLivro(int idLivro);
+        Task<ResponseModel<AutorModel>> BuscarAutorPorIdLivro(int idLivro);
     }
 }

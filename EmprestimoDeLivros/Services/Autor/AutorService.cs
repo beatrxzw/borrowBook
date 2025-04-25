@@ -39,9 +39,32 @@ namespace EmprestimoDeLivros.Services.Autor
             }
         }
 
-        public Task<ResponseModel<AutorModel>> BuscarAutorPorLivro(int idLivro)
+        public async Task<ResponseModel<AutorModel>> BuscarAutorPorIdLivro(int idLivro)
         {
-            throw new NotImplementedException();
+            ResponseModel<AutorModel> response = new ResponseModel<AutorModel>();
+            try
+            {
+                var livro = await _context.Livro
+                    .Include(a => a.Autor)
+                    .FirstOrDefaultAsync(livroBanco => livroBanco.Id == idLivro);
+
+                if (livro == null)
+                {
+                    response.Message = "Nenhum autor localizado!";
+                    return response;
+                } 
+
+                response.Data = livro.Autor;
+                response.Message = "Autor encontrado com sucesso!";
+                return response;
+
+            }
+            catch(Exception ex)
+            {
+                    response.Message = ex.Message;
+                    response.Status = false;
+                    return response;
+            }
         }
 
         public async Task<ResponseModel<List<AutorModel>>> ListarAutores()

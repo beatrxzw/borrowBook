@@ -17,7 +17,7 @@ namespace EmprestimoDeLivros.Controllers
 
         [HttpGet("ListarAutores")]
         
-        public async Task<ActionResult<ResponseModel<AutorModel>>> ListarAutores()
+        public async Task<ActionResult<ResponseModel<List<AutorModel>>>> ListarAutores()
         {
             var autores = await _autorInterface.ListarAutores();
             return Ok(autores);
@@ -29,5 +29,13 @@ namespace EmprestimoDeLivros.Controllers
             var autor = await _autorInterface.BuscarAutorPorId(idAutor);
             return Ok(autor);   
         }
+
+        [HttpGet("BuscarAutorPorLivroId/{idLivro}")]
+       public async Task<ActionResult<ResponseModel<LivroModel>>> BuscarAutorPorLivroId(int idLivro)
+        {
+            var autor = await _autorInterface.BuscarAutorPorIdLivro(idLivro);
+            return Ok(autor);
+        }
     }
 }
+ 
