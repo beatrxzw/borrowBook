@@ -11,6 +11,6 @@ namespace EmprestimoDeLivros.Data
         }
 
         public DbSet<AutorModel> Autores {  get; set; }
-        public DbSet<LivroModel> Livros {  get; set; }
+        public DbSet<LivroModel> Livro {  get; set; }
     }
 }

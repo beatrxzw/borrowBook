@@ -1,4 +1,5 @@
-﻿using EmprestimoDeLivros.Models;
+﻿using EmprestimoDeLivros.Dto.Autor;
+using EmprestimoDeLivros.Models;
 
 namespace EmprestimoDeLivros.Services.Autor
 {
@@ -6,6 +7,10 @@ namespace EmprestimoDeLivros.Services.Autor
     {
         Task<ResponseModel<List<AutorModel>>> ListarAutores();
         Task<ResponseModel<AutorModel>> BuscarAutorPorId( int idAutor );
-        Task<ResponseModel<AutorModel>> BuscarAutorPorLivro(int idLivro);
+        Task<ResponseModel<AutorModel>> BuscarAutorPorIdLivro(int idLivro);
+        Task<ResponseModel<List<AutorModel>>> RegistrarAutor(AutorRegistroDto autorRegistroDto);
+        Task<ResponseModel<List<AutorModel>>> EditarAutor(AutorEdicaoDto autorEdicaoDto );
+        Task<ResponseModel<List<AutorModel>>> RemoverAutor(int idAutor);
+
     }
 }
