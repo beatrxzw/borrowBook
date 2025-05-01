@@ -1,4 +1,5 @@
-﻿using EmprestimoDeLivros.Models;
+﻿using EmprestimoDeLivros.Dto.Autor;
+using EmprestimoDeLivros.Models;
 using EmprestimoDeLivros.Services.Autor;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,28 @@ namespace EmprestimoDeLivros.Controllers
             var autor = await _autorInterface.BuscarAutorPorIdLivro(idLivro);
             return Ok(autor);
         }
+
+        [HttpPost("RegistrarAutor")]
+        public async Task<ActionResult<ResponseModel<LivroModel>>> RegistrarAutor(AutorRegistroDto autorRegistroDto)
+        {
+            var autores = await _autorInterface.RegistrarAutor(autorRegistroDto);
+            return Ok(autores);
+        }
+
+        [HttpDelete("DeletarAutor/{idAutor}")]
+        public async Task<ActionResult<ResponseModel<List<AutorModel>>>> DeletarAutor(int idAutor)
+        {
+            var autor = await _autorInterface.RemoverAutor(idAutor);
+            return Ok(autor);
+        }
+
+        [HttpPut("EditarAutor")]
+        public async Task<ActionResult<ResponseModel<List<AutorModel>>>> EditarAutor(AutorEdicaoDto autorEdicaoDto)
+        {
+            var autor = await _autorInterface.EditarAutor(autorEdicaoDto);
+            return Ok(autor);
+        }
+
     }
 }
  
